@@ -191,7 +191,7 @@ func (m *RPCMetrics) RecordDAClientResponse(method string, err error) {
 	}
 
 	// Increment the metric for DA client responses
-	m.RPCClientResponsesTotal.WithLabelValues(method, errStr).Inc()
+	m.DAClientResponsesTotal.WithLabelValues(method, errStr).Inc()
 }
 
 type NoopRPCMetrics struct{}
