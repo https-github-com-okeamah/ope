@@ -16,8 +16,8 @@ import (
 	"github.com/ethereum-optimism/optimism/op-batcher/flags"
 	"github.com/ethereum-optimism/optimism/op-batcher/metrics"
 	"github.com/ethereum-optimism/optimism/op-batcher/rpc"
-	"github.com/ethereum-optimism/optimism/op-node/chaincfg"
 	celestia "github.com/ethereum-optimism/optimism/op-celestia"
+	"github.com/ethereum-optimism/optimism/op-node/chaincfg"
 	"github.com/ethereum-optimism/optimism/op-node/rollup"
 	plasma "github.com/ethereum-optimism/optimism/op-plasma"
 	"github.com/ethereum-optimism/optimism/op-service/cliapp"
@@ -53,7 +53,7 @@ type BatcherService struct {
 	L1Client         *ethclient.Client
 	EndpointProvider dial.L2EndpointProvider
 	TxManager        txmgr.TxManager
-	PlasmaDA         *plasma.DAClient
+	PlasmaDA         plasma.DAStorage
 
 	BatcherConfig
 
@@ -323,10 +323,7 @@ func (bs *BatcherService) initPlasmaDA(cfg *CLIConfig) error {
 }
 
 func (bs *BatcherService) initDA(cfg *CLIConfig) error {
-	client, err := celestia.NewDAClient(cfg.DaConfig.DaRpc)
-	if err != nil {
-		return err
-	}
+	client := celestia.NewDAClient(cfg.DaConfig.DaRpc, false)
 	bs.DAClient = client
 	return nil
 }

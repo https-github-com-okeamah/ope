@@ -2,7 +2,6 @@ package batcher
 
 import (
 	"context"
-	"encoding/hex"
 	"errors"
 	"fmt"
 	"io"
@@ -49,7 +48,7 @@ type DriverSetup struct {
 	L1Client         L1Client
 	EndpointProvider dial.L2EndpointProvider
 	ChannelConfig    ChannelConfig
-	PlasmaDA         *plasma.DAClient
+	PlasmaDA         plasma.DAStorage
 	DAClient         *celestia.DAClient
 }
 
@@ -418,15 +417,6 @@ func (l *BatchSubmitter) blobTxCandidate(data []byte) (*txmgr.TxCandidate, error
 
 func (l *BatchSubmitter) calldataTxCandidate(data []byte) *txmgr.TxCandidate {
 	l.Log.Info("building Calldata transaction candidate", "size", len(data))
-	ctx, cancel := context.WithTimeout(context.Background(), 30*time.Duration(l.RollupConfig.BlockTime)*time.Second)
-	ids, _, err := l.DAClient.Client.Submit(ctx, [][]byte{data}, -1)
-	cancel()
-	if err == nil && len(ids) == 1 {
-		l.Log.Info("celestia: blob successfully submitted", "id", hex.EncodeToString(ids[0]))
-		data = append([]byte{celestia.DerivationVersionCelestia}, ids[0]...)
-	} else {
-		l.Log.Info("celestia: blob submission failed; falling back to eth", "err", err)
-	}
 	return &txmgr.TxCandidate{
 		To:     &l.RollupConfig.BatchInboxAddress,
 		TxData: data,

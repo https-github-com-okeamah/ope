@@ -15,7 +15,7 @@ const (
 )
 
 var (
-	defaultDaRpc = "localhost:26650"
+	defaultDaRpc = "da:26650"
 
 	ErrInvalidPort = errors.New("invalid port")
 )
