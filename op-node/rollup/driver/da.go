@@ -6,9 +6,6 @@ import (
 )
 
 func SetDAClient(cfg celestia.Config) error {
-	client, err := celestia.NewDAClient(cfg.DaRpc)
-	if err != nil {
-		return err
-	}
+	client := celestia.NewDAClient(cfg.DaRpc, false)
 	return derive.SetDAClient(client)
 }

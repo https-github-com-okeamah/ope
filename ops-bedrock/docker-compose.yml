@@ -103,8 +103,9 @@ services:
       --metrics.port=7300
       --pprof.enabled
       --rpc.enable-admin
-    environment:
-      OP_NODE_DA_RPC: "da:26650"
+      --plasma.enabled
+      --plasma.da-server=da:26650
+      --plasma.da-backend=celestia
     ports:
       - "7545:8545"
       - "9003:9003"
@@ -186,7 +187,9 @@ services:
       OP_BATCHER_METRICS_ENABLED: "true"
       OP_BATCHER_RPC_ENABLE_ADMIN: "true"
       OP_BATCHER_BATCH_TYPE: 0
-      OP_BATCHER_DA_RPC: "da:26650"
+      OP_BATCHER_PLASMA_DA_SERVER: "da:26650"
+      OP_BATCHER_PLASMA_DA_BACKEND: "celestia"
+      OP_BATCHER_PLASMA_ENABLED: "true"
 
   op-challenger:
     depends_on:
