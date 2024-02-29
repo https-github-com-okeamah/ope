@@ -31,36 +31,25 @@ func NewDAClient(rpc string, verify bool) *DAClient {
 }
 
 func (c *DAClient) GetInput(ctx context.Context, key []byte) ([]byte, error) {
-	var out []byte
-	switch key[0] {
-	case DerivationVersionCelestia:
-		log.Info("celestia: blob request", "id", hex.EncodeToString(key))
-		ctx, cancel := context.WithTimeout(context.Background(), c.GetTimeout)
-		blobs, err := c.Client.Get(ctx, [][]byte{key[1:]})
-		cancel()
-		if err != nil || len(blobs) == 0 {
-			return nil, fmt.Errorf("celestia: failed to resolve frame: %w", err)
-		}
-		if len(blobs) != 1 {
-			c.Log.Warn("celestia: unexpected length for blobs", "expected", 1, "got", len(blobs))
-		}
-		out = blobs[0]
-	default:
-		out = key
-		log.Info("celestia: using eth fallback")
+	log.Info("celestia: blob request", "id", hex.EncodeToString(key))
+	ctx, cancel := context.WithTimeout(context.Background(), c.GetTimeout)
+	blobs, err := c.Client.Get(ctx, [][]byte{key[1:]})
+	cancel()
+	if err != nil || len(blobs) == 0 {
+		return nil, fmt.Errorf("celestia: failed to resolve frame: %w", err)
 	}
-	return out, nil
+	if len(blobs) != 1 {
+		c.Log.Warn("celestia: unexpected length for blobs", "expected", 1, "got", len(blobs))
+	}
+	return blobs[0], nil
 }
 
 func (c *DAClient) SetInput(ctx context.Context, data []byte) ([]byte, error) {
 	ids, _, err := c.Client.Submit(ctx, [][]byte{data}, -1)
-	var key []byte
 	if err == nil && len(ids) == 1 {
 		c.Log.Info("celestia: blob successfully submitted", "id", hex.EncodeToString(ids[0]))
-		key = append([]byte{DerivationVersionCelestia}, ids[0]...)
-	} else {
-		key = data
-		c.Log.Info("celestia: blob submission failed; falling back to eth", "err", err)
+		key := append([]byte{DerivationVersionCelestia}, ids[0]...)
+		return key, nil
 	}
-	return key, nil
+	return nil, err
 }

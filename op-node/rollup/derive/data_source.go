@@ -73,7 +73,7 @@ func (ds *DataSourceFactory) OpenData(ctx context.Context, ref eth.L1BlockRef, b
 	} else {
 		src, err = NewCalldataSource(ctx, ds.log, ds.dsCfg, ds.fetcher, ref, batcherAddr)
 	}
-	if ds.dsCfg.plasmaEnabled {
+	if ds.ecotoneTime != nil && ref.Time >= *ds.ecotoneTime && ds.dsCfg.plasmaEnabled {
 		// plasma([calldata | blobdata](l1Ref)) -> data
 		return NewPlasmaDataSource(ds.log, src, ds.plasmaFetcher, ref.ID()), nil
 	}
