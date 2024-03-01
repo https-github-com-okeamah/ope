@@ -57,13 +57,17 @@ type CLIConfig struct {
 }
 
 func (c CLIConfig) Check() error {
-	if c.Enabled {
-		if c.DAServerURL == "" {
-			return fmt.Errorf("DA server URL is required when plasma da is enabled")
-		}
-		if _, err := url.Parse(c.DAServerURL); err != nil {
-			return fmt.Errorf("DA server URL is invalid: %w", err)
-		}
+	if !c.Enabled {
+		return fmt.Errorf("plasma must be enabled")
+	}
+	if c.DAServerURL == "" {
+		return fmt.Errorf("DA server URL is required when plasma da is enabled")
+	}
+	if _, err := url.Parse(c.DAServerURL); err != nil {
+		return fmt.Errorf("DA server URL is invalid: %w", err)
+	}
+	if c.DABackend != "celestia" {
+		return fmt.Errorf("plasma backend must be set to celestia")
 	}
 	return nil
 }
