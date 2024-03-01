@@ -57,18 +57,12 @@ type CLIConfig struct {
 }
 
 func (c CLIConfig) Check() error {
-	if !c.Enabled {
-		return fmt.Errorf("DA must be enabled; this version requires plasma celestia")
-	}
 	if c.Enabled {
 		if c.DAServerURL == "" {
 			return fmt.Errorf("DA server URL is required when plasma da is enabled")
 		}
 		if _, err := url.Parse(c.DAServerURL); err != nil {
 			return fmt.Errorf("DA server URL is invalid: %w", err)
-		}
-		if c.DABackend != "celestia" {
-			return fmt.Errorf("DA backend unsupported; this version requires plasma celestia")
 		}
 	}
 	return nil
@@ -77,10 +71,10 @@ func (c CLIConfig) Check() error {
 func (c CLIConfig) NewDAClient() DAStorage {
 	var client DAStorage
 	switch c.DABackend {
-	case "default":
-		client = &DAClient{url: c.DAServerURL, verify: c.VerifyOnRead}
 	case "celestia":
 		client = celestia.NewDAClient(c.DAServerURL, c.VerifyOnRead)
+	default:
+		client = &DAClient{url: c.DAServerURL, verify: c.VerifyOnRead}
 	}
 	return client
 }
