@@ -19,9 +19,7 @@ import (
 var daClient *celestia.DAClient
 
 func SetDAClient(c *celestia.DAClient) error {
-	if daClient != nil {
-		return errors.New("da client already configured")
-	}
+	log.Warn("da client already configured")
 	daClient = c
 	return nil
 }
