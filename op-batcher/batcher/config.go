@@ -10,8 +10,8 @@ import (
 
 	"github.com/ethereum-optimism/optimism/op-batcher/compressor"
 	"github.com/ethereum-optimism/optimism/op-batcher/flags"
-	plasma "github.com/ethereum-optimism/optimism/op-plasma"
 	celestia "github.com/ethereum-optimism/optimism/op-celestia"
+	plasma "github.com/ethereum-optimism/optimism/op-plasma"
 	oplog "github.com/ethereum-optimism/optimism/op-service/log"
 	opmetrics "github.com/ethereum-optimism/optimism/op-service/metrics"
 	"github.com/ethereum-optimism/optimism/op-service/oppprof"
@@ -114,6 +114,9 @@ func (c *CLIConfig) Check() error {
 		return err
 	}
 	if err := c.DaConfig.Check(); err != nil {
+		return err
+	}
+	if err := c.PlasmaDA.Check(); err != nil {
 		return err
 	}
 	return nil
