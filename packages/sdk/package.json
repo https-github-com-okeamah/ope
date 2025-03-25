@@ -65,7 +65,7 @@
     "@eth-optimism/contracts-bedrock": "workspace:*",
     "@eth-optimism/core-utils": "workspace:*",
     "lodash": "^4.17.21",
-    "merkletreejs": "^0.4.0",
+    "merkletreejs": "^0.5.1",
     "rlp": "^3.0.0",
     "semver": "^7.6.0"
   },
