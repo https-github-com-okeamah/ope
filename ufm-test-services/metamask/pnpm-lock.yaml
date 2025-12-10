@@ -9,38 +9,36 @@ overrides:
   axios: ^1.6.2
   got: ^11.8.6
 
-importers:
+dependencies:
+  prom-client:
+    specifier: ^15.1.3
+    version: 15.1.3
+  zod:
+    specifier: ^3.22.4
+    version: 3.22.4
 
-  .:
-    dependencies:
-      prom-client:
-        specifier: ^15.0.0
-        version: 15.0.0
-      zod:
-        specifier: ^3.22.4
-        version: 3.22.4
-    devDependencies:
-      '@metamask/test-dapp':
-        specifier: ^8.1.0
-        version: 8.1.0
-      '@playwright/test':
-        specifier: 1.40.1
-        version: 1.40.1
-      '@synthetixio/synpress':
-        specifier: 3.7.2-beta.9
-        version: 3.7.2-beta.9(@babel/core@7.23.6)(@babel/preset-env@7.23.6)(babel-loader@9.1.3)(react-dom@18.2.0)(react@18.2.0)(typescript@5.3.3)(webpack@5.89.0)(zod@3.22.4)
-      dotenv:
-        specifier: ^16.3.1
-        version: 16.3.1
-      serve:
-        specifier: ^14.2.1
-        version: 14.2.1
-      typescript:
-        specifier: ^5.3.3
-        version: 5.3.3
-      viem:
-        specifier: ^1.20.0
-        version: 1.20.0(typescript@5.3.3)(zod@3.22.4)
+devDependencies:
+  '@metamask/test-dapp':
+    specifier: ^8.1.0
+    version: 8.1.0
+  '@playwright/test':
+    specifier: 1.40.1
+    version: 1.40.1
+  '@synthetixio/synpress':
+    specifier: 3.7.2-beta.9
+    version: 3.7.2-beta.9(@babel/core@7.23.6)(@babel/preset-env@7.23.6)(babel-loader@9.1.3)(react-dom@18.2.0)(react@18.2.0)(typescript@5.3.3)(webpack@5.89.0)(zod@3.22.4)
+  dotenv:
+    specifier: ^16.3.1
+    version: 16.3.1
+  serve:
+    specifier: ^14.2.1
+    version: 14.2.1
+  typescript:
+    specifier: ^5.3.3
+    version: 5.3.3
+  viem:
+    specifier: ^1.20.0
+    version: 1.20.0(typescript@5.3.3)(zod@3.22.4)
 
 packages:
 
@@ -2095,6 +2093,7 @@ packages:
 
   /acorn-import-assertions@1.9.0(acorn@8.11.2):
     resolution: {integrity: sha512-cmMwop9x+8KFhxvKrKfPYmN6/pKTYYHBqLa0DfvVZcKMJWNyWLnaqND7dx/qn66R7ewM1UX5XMaDVP5wlVTaVA==}
+    deprecated: package has been renamed to acorn-import-attributes
     peerDependencies:
       acorn: ^8
     dependencies:
@@ -5891,8 +5890,8 @@ packages:
       fromentries: 1.3.2
     dev: true
 
-  /prom-client@15.0.0:
-    resolution: {integrity: sha512-UocpgIrKyA2TKLVZDSfm8rGkL13C19YrQBAiG3xo3aDFWcHedxRxI3z+cIcucoxpSO0h5lff5iv/SXoxyeopeA==}
+  /prom-client@15.1.3:
+    resolution: {integrity: sha512-6ZiOBfCywsD4k1BN9IX0uZhF+tJkV8q8llP64G5Hajs4JOeVLPCwpPVcpXy3BwYiUGgyJzsJJQeOIv7+hDSq8g==}
     engines: {node: ^16 || ^18 || >=20}
     dependencies:
       '@opentelemetry/api': 1.7.0
