@@ -9,38 +9,36 @@ overrides:
   axios: ^1.6.2
   got: ^11.8.6
 
-importers:
+dependencies:
+  prom-client:
+    specifier: ^15.0.0
+    version: 15.0.0
+  zod:
+    specifier: ^4.3.5
+    version: 4.3.5
 
-  .:
-    dependencies:
-      prom-client:
-        specifier: ^15.0.0
-        version: 15.0.0
-      zod:
-        specifier: ^3.22.4
-        version: 3.22.4
-    devDependencies:
-      '@metamask/test-dapp':
-        specifier: ^8.1.0
-        version: 8.1.0
-      '@playwright/test':
-        specifier: 1.40.1
-        version: 1.40.1
-      '@synthetixio/synpress':
-        specifier: 3.7.2-beta.9
-        version: 3.7.2-beta.9(@babel/core@7.23.6)(@babel/preset-env@7.23.6)(babel-loader@9.1.3)(react-dom@18.2.0)(react@18.2.0)(typescript@5.3.3)(webpack@5.89.0)(zod@3.22.4)
-      dotenv:
-        specifier: ^16.3.1
-        version: 16.3.1
-      serve:
-        specifier: ^14.2.1
-        version: 14.2.1
-      typescript:
-        specifier: ^5.3.3
-        version: 5.3.3
-      viem:
-        specifier: ^1.20.0
-        version: 1.20.0(typescript@5.3.3)(zod@3.22.4)
+devDependencies:
+  '@metamask/test-dapp':
+    specifier: ^8.1.0
+    version: 8.1.0
+  '@playwright/test':
+    specifier: 1.40.1
+    version: 1.40.1
+  '@synthetixio/synpress':
+    specifier: 3.7.2-beta.9
+    version: 3.7.2-beta.9(@babel/core@7.23.6)(@babel/preset-env@7.23.6)(babel-loader@9.1.3)(react-dom@18.2.0)(react@18.2.0)(typescript@5.3.3)(webpack@5.89.0)(zod@4.3.5)
+  dotenv:
+    specifier: ^16.3.1
+    version: 16.3.1
+  serve:
+    specifier: ^14.2.1
+    version: 14.2.1
+  typescript:
+    specifier: ^5.3.3
+    version: 5.3.3
+  viem:
+    specifier: ^1.20.0
+    version: 1.20.0(typescript@5.3.3)(zod@4.3.5)
 
 packages:
 
@@ -1518,7 +1516,7 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
-  /@synthetixio/synpress@3.7.2-beta.9(@babel/core@7.23.6)(@babel/preset-env@7.23.6)(babel-loader@9.1.3)(react-dom@18.2.0)(react@18.2.0)(typescript@5.3.3)(webpack@5.89.0)(zod@3.22.4):
+  /@synthetixio/synpress@3.7.2-beta.9(@babel/core@7.23.6)(@babel/preset-env@7.23.6)(babel-loader@9.1.3)(react-dom@18.2.0)(react@18.2.0)(typescript@5.3.3)(webpack@5.89.0)(zod@4.3.5):
     resolution: {integrity: sha512-1fnr3jzQA2op6YnXxx6ERZ4babB+Ib1Xc5URGTcndH891Oa5uVlIaP0zRm5udTJuNdENOTLgkAdjv4WTGurBVA==}
     engines: {node: '>=14'}
     hasBin: true
@@ -1553,7 +1551,7 @@ packages:
       get-port: 7.0.0
       node-fetch: 2.7.0
       underscore: 1.13.6
-      viem: 1.20.0(typescript@5.3.3)(zod@3.22.4)
+      viem: 1.20.0(typescript@5.3.3)(zod@4.3.5)
       wait-on: 7.2.0(debug@4.3.4)
     transitivePeerDependencies:
       - '@babel/core'
@@ -2070,7 +2068,7 @@ packages:
     resolution: {integrity: sha512-g5QiLIfbg3pLuYUJPlisNKY+epQJTcMDsOnVNkscrDP1oi7vmJnzOANYJI/1pZcVJ6umUkBv3aFtlg1UvUHGzA==}
     dev: true
 
-  /abitype@0.9.8(typescript@5.3.3)(zod@3.22.4):
+  /abitype@0.9.8(typescript@5.3.3)(zod@4.3.5):
     resolution: {integrity: sha512-puLifILdm+8sjyss4S+fsUN09obiT1g2YW6CtcQF+QDzxR0euzgEB29MZujC6zMk2a6SVmtttq1fc6+YFA7WYQ==}
     peerDependencies:
       typescript: '>=5.0.4'
@@ -2082,7 +2080,7 @@ packages:
         optional: true
     dependencies:
       typescript: 5.3.3
-      zod: 3.22.4
+      zod: 4.3.5
     dev: true
 
   /accepts@1.3.8:
@@ -2095,6 +2093,7 @@ packages:
 
   /acorn-import-assertions@1.9.0(acorn@8.11.2):
     resolution: {integrity: sha512-cmMwop9x+8KFhxvKrKfPYmN6/pKTYYHBqLa0DfvVZcKMJWNyWLnaqND7dx/qn66R7ewM1UX5XMaDVP5wlVTaVA==}
+    deprecated: package has been renamed to acorn-import-attributes
     peerDependencies:
       acorn: ^8
     dependencies:
@@ -7163,7 +7162,7 @@ packages:
       extsprintf: 1.3.0
     dev: true
 
-  /viem@1.20.0(typescript@5.3.3)(zod@3.22.4):
+  /viem@1.20.0(typescript@5.3.3)(zod@4.3.5):
     resolution: {integrity: sha512-yPjV9pJr10xi28C/9LEvs5zdZNEMiru3Kz7nufghVYABJAfeSkoZQXb6b23n7MscS7c55JO5nmUI3xKkd9g6Yg==}
     peerDependencies:
       typescript: '>=5.0.4'
@@ -7176,7 +7175,7 @@ packages:
       '@noble/hashes': 1.3.2
       '@scure/bip32': 1.3.2
       '@scure/bip39': 1.2.1
-      abitype: 0.9.8(typescript@5.3.3)(zod@3.22.4)
+      abitype: 0.9.8(typescript@5.3.3)(zod@4.3.5)
       isows: 1.0.3(ws@8.13.0)
       typescript: 5.3.3
       ws: 8.13.0
@@ -7544,5 +7543,5 @@ packages:
     engines: {node: '>=12.20'}
     dev: true
 
-  /zod@3.22.4:
-    resolution: {integrity: sha512-iC+8Io04lddc+mVqQ9AZ7OQ2MrUKGN+oIQyq1vemgt46jwCwLfhq7/pwnBnNXXXZb8VTVLKwp9EDkx+ryxIWmg==}
+  /zod@4.3.5:
+    resolution: {integrity: sha512-k7Nwx6vuWx1IJ9Bjuf4Zt1PEllcwe7cls3VNzm4CQ1/hgtFUK2bRNG3rvnpPUhFjmqJKAKtjV576KnUkHocg/g==}
